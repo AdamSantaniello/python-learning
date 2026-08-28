@@ -1,0 +1,30 @@
+{
+  // Use the project's uv-managed virtualenv. VS Code usually auto-detects
+  // .venv, but pinning it avoids "which Python?" ambiguity.
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  // --- Formatting: Ruff, on every save ---
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      // Auto-fix lint issues Ruff knows how to fix (unused imports, etc.)
+      "source.fixAll.ruff": "explicit",
+      // Sort imports on save (Ruff's built-in isort)
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  // --- Type checking ---
+  // Pylance's own lightweight checker: "basic" is a gentle start.
+  // (Bump to "strict" later to match the mypy config in pyproject.toml.)
+  "python.analysis.typeCheckingMode": "basic",
+  // The mypy extension reads [tool.mypy] from pyproject.toml automatically,
+  // and reports in the Problems panel as you edit.
+  "mypy-type-checker.importStrategy": "fromEnvironment",
+
+  // --- Testing: pytest ---
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestArgs": ["tests"]
+}

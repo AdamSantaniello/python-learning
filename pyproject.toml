@@ -1,0 +1,42 @@
+[project]
+name = "python-learning"
+version = "0.1.0"
+description = "Scratch repo for learning Python."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = []
+
+# No [build-system] table: this tells uv the project itself is not an
+# installable package, just an environment. uv manages .venv and the
+# dependencies below; you run code with `uv run python <file>`.
+
+[dependency-groups]
+# Dev-only deps (think Gemfile's `group :development, :test`).
+# Installed by `uv sync`, excluded from anything you'd ship.
+dev = [
+    "pytest>=8",
+    "ruff>=0.9",
+    "mypy>=1.13",
+]
+
+[tool.ruff]
+line-length = 88          # Black's default; PEP 8 says 79, most teams pick 88-100
+target-version = "py313"
+
+[tool.ruff.lint]
+# A sensible starter rule set. E/W = pycodestyle, F = pyflakes (real bugs),
+# I = isort (import sorting), UP = pyupgrade (modernize syntax),
+# B = flake8-bugbear (likely-bug patterns).
+select = ["E", "W", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true             # opt into all the strict checks from day one
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Put the project root on the import path so tests can do `from hello import ...`.
+# Python has no implicit "load from cwd", so without this the imports fail
+# during test collection. (We'll add "exercises" here when the first one lands.)
+pythonpath = ["."]
