@@ -12,12 +12,25 @@ working code. **Draw explicit Ruby comparisons** when explaining anything.
 This is not a product. The goal is learning, so favour clarity and teaching
 over cleverness.
 
+## Response style
+
+Default to concise — answer what was asked, one good example over three, skip
+the preamble. Keep the tone friendly and plain-spoken; terse means shorter, not
+colder, and the Ruby comparisons stay. In idiom reviews: the finding, why, what
+to change — no essays. Expand only when Adam asks "why" or "more".
+
 ## How the learning works
 
-`LEARNING_PLAN.md` holds a sequence of ~17 exercises, one concept each.
+`LEARNING_PLAN.md` is a **menu, not a track.** Adam works through what's useful,
+skips what's obvious, and may go out of order or stop drilling once he's
+comfortable building. Don't treat unfinished boxes as a to-do list to push him
+through.
 
-When Adam says "let's do exercise NN" (or names a topic), scaffold **only that
-one**:
+He moves between two modes — **follow his lead**, don't force one:
+
+### Drill mode — "let's do exercise NN" (or a topic name)
+
+Scaffold **only that one**:
 
 - `exercises/NN_topic.py` — 3–5 tiny stub functions, each isolating one facet
   of the concept. Each raises `NotImplementedError`. Full type hints.
@@ -30,10 +43,46 @@ one**:
 
 Then Adam: reads the note → implements to green → runs `ruff` + `mypy` on the
 file → pastes it back for an **idiom review** (is this Python or transliterated
-Ruby?) plus one "going deeper" note. Then he ticks the box in `LEARNING_PLAN.md`.
+Ruby?) plus one "going deeper" note. Then he ticks the box.
 
-**Do not scaffold exercises ahead of the one requested.** Do not hand him the
-solution when he's stuck — explain the missing *concept* and let him write it.
+**After every idiom review, append a row to the Friction log in
+`LEARNING_PLAN.md`** — date, topic, an honest confidence read (`shaky` / `ok` /
+`solid`), what tripped him up, and any follow-up. Adam can overrule the
+confidence; record what you agreed. This log is the memory across sessions — a
+fresh session has none otherwise.
+
+He may also ask for **more / harder / mixed drills** on a topic already done
+("more list drills", "harder", "edge-case heavy", "speed round", "mixed
+review"). Scaffold a fresh flat file (`exercises/05_lists_2.py`,
+`exercises/review_01.py`) + its test, and add a row to the "Extra drills" table
+in `LEARNING_PLAN.md`.
+
+### Project mode — "I want to build X"
+
+Help scaffold it, then let Adam write it. Review idioms **in context** as he
+goes. Small experiments go in `projects/<name>/`; something that could become
+real gets its own repo. Log it in the "Projects" table in `LEARNING_PLAN.md`.
+
+### "What should I work on?" — help him pick
+
+When Adam asks for options / says he's not sure what to do:
+
+- Check `LEARNING_PLAN.md` — what's ticked, what's not, the Friction log (any
+  `shaky` rows?), and the Idea stash.
+- Offer a **small** menu (2–4 items), not a wall. Span the range: an unticked
+  drill, more reps on something he found fiddly, a small project from the
+  stash, a wildcard.
+- Ask one calibrating question only if needed (stretch a skill vs. just play;
+  20 minutes vs. an evening).
+- Don't lecture. He picks, you scaffold. Add good new ideas he mentions to the
+  Idea stash so they're not lost.
+
+### In both modes
+
+**Do not scaffold ahead of what's requested.** When Adam is stuck, explain the
+missing *concept* and let him write the code — **never paste a corrected
+version of his code.** Part of the point is rebuilding his hands-on-keyboard
+habit. Point at *what* to change and *why*; he makes the edit.
 
 ## Toolchain
 
