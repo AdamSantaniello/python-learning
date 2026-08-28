@@ -107,6 +107,8 @@ uv run pytest -k <name>        # one function's tests
 uv run ruff check .            # lint
 uv run ruff format .           # format
 uv run mypy .                  # type check
+uv run pre-commit install      # activate the git hook (one time, after clone)
+uv run pre-commit run --all-files   # run all hooks manually
 ```
 
 ## Layout
@@ -118,6 +120,7 @@ tests/                   pytest tests
 notes/NN_topic.md        short concept briefs
 LEARNING_PLAN.md         the sequence + progress checkboxes
 pyproject.toml           project + all tool config
+.pre-commit-config.yaml  git-commit hooks (ruff + mypy + pytest + file hygiene)
 .github/workflows/ci.yml runs ruff + mypy + pytest on every push
 ```
 
@@ -126,4 +129,5 @@ pyproject.toml           project + all tool config
 - Flat layout, no `src/`, no build system — this is not a package.
 - Full type hints on everything; keep mypy strict passing.
 - Keep `ruff check`, `ruff format --check`, and `mypy` clean before committing.
+  The pre-commit hook enforces this locally; CI is the backstop.
 - Adam pushes directly to `main`. No PR workflow.

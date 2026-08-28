@@ -1,0 +1,62 @@
+# pre-commit config — hooks that run automatically on `git commit`.
+#
+# Ruby analogy: this is the `overcommit` gem / `lefthook.yml`. `pre-commit` is
+# a standalone tool (added to the dev group) that, once you run
+# `pre-commit install`, writes a real script to `.git/hooks/pre-commit`. On
+# every commit it runs the hooks below against the *staged* files and blocks
+# the commit if any fail.
+#
+# Two styles of hook appear here:
+#   - external repos (`repo: https://...`) — pre-commit clones them and builds
+#     an isolated environment. This is the style you'll see in most projects.
+#   - `repo: local` — runs a command from THIS project's environment. We use it
+#     for ruff/mypy/pytest so the versions come from uv.lock, matching CI
+#     exactly instead of being pinned a second time here.
+#
+# Commands:
+#   uv run pre-commit install          # activate the git hook (one time)
+#   uv run pre-commit run --all-files   # run every hook against the whole repo
+#   uv run pre-commit autoupdate        # bump the external `rev:` pins
+
+repos:
+  # Generic file hygiene. The single most common pre-commit repo — worth
+  # seeing. These auto-fix in place; re-stage and commit again if they do.
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+
+  # Project checks — same commands as .github/workflows/ci.yml and the manual
+  # loop in LEARNING_PLAN.md, just run before the commit lands.
+  - repo: local
+    hooks:
+      - id: ruff-check
+        name: ruff check
+        entry: uv run ruff check --fix
+        language: system
+        types: [python]
+
+      - id: ruff-format
+        name: ruff format
+        entry: uv run ruff format
+        language: system
+        types: [python]
+
+      - id: mypy
+        name: mypy (strict)
+        entry: uv run mypy .
+        language: system
+        types: [python]
+        pass_filenames: false  # mypy checks the whole project, not just staged files
+
+      - id: pytest
+        name: pytest
+        entry: uv run pytest -q
+        language: system
+        types: [python]
+        pass_filenames: false
