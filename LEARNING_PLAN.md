@@ -32,7 +32,7 @@ These are pure Python muscle — small, mechanical, benefit from reps. This is
 the part that rebuilds hands-on-keyboard dexterity.
 
 ### Module A — syntax & values
-- [ ] 01 · Functions & arguments — positional/keyword/default, `*args`/`**kwargs`, no implicit return
+- [x] 01 · Functions & arguments — positional/keyword/default, `*args`/`**kwargs`, no implicit return
 - [ ] 02 · Strings — f-strings, methods, slicing, immutability, `"sep".join(...)`
 - [ ] 03 · Numbers & booleans — `/` vs `//`, truthiness, `None` vs `nil`, `is` vs `==`
 - [ ] 04 · Conditionals — `if/elif/else`, ternary expression, `and`/`or` short-circuit, `match`
@@ -71,7 +71,7 @@ answer "what should I work on?".
 
 | Date | Topic | Confidence | What tripped me up | Follow-up |
 |------|-------|-----------|--------------------|-----------|
-|      |       |           |                    |           |
+| 2026-08-28 | 01 · Functions & arguments | ok | Dict iteration yields keys, not pairs (needed `.items()`); `if not params:` for empty-dict check instead of `len(...) == 0`; "multiple return values" = one tuple | Watch for `len(x) == 0` / explicit empty checks in future exercises — the falsy-collection idiom |
 
 ## Extra drills
 

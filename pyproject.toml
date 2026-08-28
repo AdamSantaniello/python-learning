@@ -36,7 +36,7 @@ warn_unused_configs = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-# Put the project root on the import path so tests can do `from hello import ...`.
-# Python has no implicit "load from cwd", so without this the imports fail
-# during test collection. (We'll add "exercises" here when the first one lands.)
-pythonpath = ["."]
+# Put the project root and exercises/ on the import path so tests can import
+# `hello` and the exercise modules. Python has no implicit "load from cwd", so
+# without this the imports fail during test collection.
+pythonpath = [".", "exercises"]
