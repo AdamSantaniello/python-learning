@@ -72,6 +72,7 @@ answer "what should I work on?".
 | Date | Topic | Confidence | What tripped me up | Follow-up |
 |------|-------|-----------|--------------------|-----------|
 | 2026-08-28 | 01 · Functions & arguments | ok | Dict iteration yields keys, not pairs (needed `.items()`); `if not params:` for empty-dict check instead of `len(...) == 0`; "multiple return values" = one tuple | Watch for `len(x) == 0` / explicit empty checks in future exercises — the falsy-collection idiom |
+| 2026-09-05 | 01b · Functions & arguments (extra drills) | solid | Both target idioms (falsy checks, `.items()`) landed clean; new gotcha surfaced instead — shadowed the `dict` builtin with a loop variable of the same name, caught by ruff (F823) | Avoid naming loop/parameter variables `list`/`dict`/`str`/`type`/`id`/`input` — they shadow builtins |
 
 ## Extra drills
 
@@ -83,7 +84,7 @@ Log them here so you can see what you've hammered:
 
 | Date | File | Topic | Notes |
 |------|------|-------|-------|
-|      |      |       |       |
+| 2026-09-05 | `exercises/01_functions_2.py` | Functions & arguments | Targeted redo of the two friction points from 01: falsy-collection checks instead of `len(x) == 0`, and dict iteration via `.items()` |
 
 ## Idea stash
 
